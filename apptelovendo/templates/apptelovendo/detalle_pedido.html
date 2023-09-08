@@ -1,0 +1,55 @@
+{%extends "appTelovendo/base.html"%}
+
+{%block title%} Te Lo Vendo {%endblock%}
+
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/estilos.css' %}">
+
+<div class="container">
+    <h2>Detalles del pedido N°: {{pedido.id}}</h2>
+    <div class="card">
+        <div class="card-header">
+            Header
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Detalles</h4>
+
+
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            
+                            <th scope="col">Estado</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Canitdad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <td scope="row">{{pedido.estado}}</td>
+                            <td>{{pedido.usuario.nombre_completo}}</td>
+                            {% for detalle in detalles %}
+                                <td>{{detalle.producto.nombre}}</td>
+                                <td>{{detalle.cantidad}}</td>
+                            {% endfor %}
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="card-footer text-muted">
+            Footer
+        </div>
+    </div>
+
+</div>
+</div>
+{%endblock%}

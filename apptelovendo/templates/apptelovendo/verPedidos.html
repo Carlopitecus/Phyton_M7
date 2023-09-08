@@ -1,0 +1,73 @@
+{%extends "appTelovendo/base.html"%}
+
+{%block title%} Ver Pedidos {%endblock%}
+
+{%block content%}
+{%load static%}
+<div class="container">
+
+    <div class="card">
+        <div class="card-header">
+            Header
+        </div>
+        <div class="card-body">
+            <div class="pedidos" style="justify-content: space-between;display: flex;">
+            <h4 class="card-title">Pedidos</h4>
+            <a href="{% url 'tomar_pedido'%}" class="btn btn-success btn-lg " tabindex="1" role="button" >Tomar Pedidos</a>
+            
+            </div>
+            <br>
+
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Actualización</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Número de Cliente</th>
+                            <th scope="col">Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pedido in pedidos %}
+                        <tr class="">
+                            <td scope="row">{{ pedido.id }}</td>
+                            <td>
+                                <form action="{% url 'verPedidos'%}" method="POST">
+                                    {% csrf_token%}
+                                    <input type="hidden" name="pedido_id" value="{{ pedido.id }}">
+                                    <select name="nuevo_estado" id="">
+                                        {% for value, label in pedido.ESTADOS %}
+                                            <option value="{{ value }}" {% if pedido.estado == value %}selected{% endif%}>{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class=" btn btn-primary">Guardar</button>
+                                </form>
+                            </td>
+                            <td>{{ pedido.estado }}</td>
+                            <td>{{ pedido.usuario_id }}</td>
+                            <td>
+                                <a href="{% url 'detalle_pedido' pedido.id%}" class="btn btn-info" role="buttom">Ver detalles</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="card-footer text-muted">
+            Footer
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{%endblock%}

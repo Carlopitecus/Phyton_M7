@@ -1,0 +1,37 @@
+{%extends "appTelovendo/base.html"%}
+
+{%block title%} Te Lo Vendo {%endblock%}
+
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/estilos.css' %}">
+<div class="container mt-4 mb-4">
+    <div class="col-md-12">
+        <form method="post" action="{%url 'registro'%}">
+            {% csrf_token %}
+            <h1 class="text-center">Formulario de registro</h1>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">Ingrese su correo</label>
+                    <input type="email" name="{{form.email.name}}" class="form-control" id="" placeholder="ejemplo@ejemplo">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.nombre_completo.id_for_label }}" class="form-label">Ingrese su nombre completo</label>
+                    <input type="text" name="{{form.nombre_completo.name}}" class="form-control" id="" placeholder="Ingrese su nombre completo">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.rut.id_for_label }}" class="form-label">Ingrese su rut</label>
+                    <input type="text" name="{{form.rut.name}}" class="form-control" id="" placeholder="123456789-0">
+                </div>
+                
+                
+            <button type="submit" class="btn btn-secondary mt-2 w-100">Registrarse</button>
+            </div>
+            
+        </form>
+    </div>
+
+</div>
+
+{%endblock%}

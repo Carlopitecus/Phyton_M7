@@ -1,0 +1,38 @@
+{%extends "appTelovendo/base.html"%}
+
+{%block title%} Te Lo Vendo {%endblock%}
+
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/estilos.css' %}">
+
+    <div class="container ">
+        <h1 class="text-center text-dark">Inicia sesión</h1>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.level == messages.ERROR %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <div class="row  justify-content-center ">
+            <div class="col-lg-8">
+                <form class="inicio-sesion form-control form-registro mb-4" method="POST" action="{%url 'iniciar_sesion'%}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="" class="form-label">Nombre de usuario</label>
+                        <input type="texto" name="username" class="form-control" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <button type="submit" class="btn btn-secondary w-100" >Iniciar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{%endblock%}

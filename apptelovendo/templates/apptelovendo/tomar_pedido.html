@@ -1,0 +1,46 @@
+{%extends "appTelovendo/base.html"%}
+
+{%block title%} Tomar pedido {%endblock%}
+
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/estilos.css' %}">
+<h1 class="text-center">Tomar  pedidos pendientes</h1>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for usuario in usuarios_con_pedidos_pendientes %}
+                    <tr>
+                        <td>{{usuario.nombre_completo}}</td>
+
+                        <td>
+                            {% for pedido in usuarios.peidos %}
+                                {% if pedido.usuario == usuario%}
+                                    {{pedido.get_estado_display}}
+                                {% endif %}
+                            {% endfor %}
+                            <form action="" method="POST">
+                                {%csrf_token%}
+                                <input type="hidden" name="usuario_id" value="{{usuario.id}}">
+                                <button type="submit" class="btn btn-primary">Tomar Pedido</button>
+                            </form>
+                        </td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        
+        </table>
+    </div>
+
+</div>
+
+
+{%endblock%}
