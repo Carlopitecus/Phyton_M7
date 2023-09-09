@@ -56,7 +56,7 @@
 
                 {% if user.is_superuser or user.is_staff %}
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#" >Gestión de Productos</a>
+                        <a class="nav-link text-light" href="{% url 'verPedidos' %}" >Gestión de Productos</a>
                     </li>
                 {% endif %}
 

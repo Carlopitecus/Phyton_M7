@@ -1,0 +1,62 @@
+{%extends "appTelovendo/base.html"%}
+
+{%block title%} Pedidos {%endblock%}
+
+{%block content%}
+{%load static%}
+<div class="container">
+
+    <div class="card">
+        <div class="card-header">
+            Header
+        </div>
+        <div class="card-body">
+            <div class="pedidos" style="justify-content: space-between;display: flex;">
+            <h4 class="card-title">Pedidos</h4>
+            <a href="{% url 'tomar_pedido'%}" class="btn btn-success btn-lg " tabindex="1" role="button" >Tomar Pedidos</a>
+            
+            </div>
+            <br>
+
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Direccion de despacho</th>
+                            <th scope="col">Forma de pago</th>
+                            <th scope="col">Productos</th>
+                            <th scope="col">Cantidad de productos</th>
+                            <th scope="col">Precio de productos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for pedido in pedidos %} 
+                        <tr class="">
+                            <td scope="row">{{ pedido.cliente }}</td>
+                            <td>{{pedido.despacho}}</td>
+                            <td>{{ pedido.forma_pago }}</td>
+                            <td>{{ pedido.productos }}</td>
+                            <td>{{pedido.cantidad}}</td>
+                            <td>{{pedido.precio}}</td>  
+                        </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="card-footer text-muted">
+            Footer
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{%endblock%}

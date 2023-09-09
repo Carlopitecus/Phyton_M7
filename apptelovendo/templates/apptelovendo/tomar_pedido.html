@@ -6,41 +6,51 @@
 {%block content%}
 {%load static%}
 <link rel="stylesheet" href="{%static 'css/estilos.css' %}">
-<h1 class="text-center">Tomar  pedidos pendientes</h1>
-<div class="container">
-    <div class="table-responsive">
-        <table class="table table-primary">
-            <thead>
-                <tr>
-                    <th>Cliente</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                {%for usuario in usuarios_con_pedidos_pendientes %}
-                    <tr>
-                        <td>{{usuario.nombre_completo}}</td>
 
-                        <td>
-                            {% for pedido in usuarios.peidos %}
-                                {% if pedido.usuario == usuario%}
-                                    {{pedido.get_estado_display}}
-                                {% endif %}
-                            {% endfor %}
-                            <form action="" method="POST">
-                                {%csrf_token%}
-                                <input type="hidden" name="usuario_id" value="{{usuario.id}}">
-                                <button type="submit" class="btn btn-primary">Tomar Pedido</button>
-                            </form>
-                        </td>
-                    </tr>
-                {%endfor%}
-            </tbody>
-        
-        </table>
+<!--<div class="container mt-4 mb-4">
+    <div class="col-md-12">
+        <form method="POST" action="{%url 'tomar_pedido' %}">
+            {% csrf_token %}
+            <h1 class="text-center">Tomar Pedidos</h1>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.cliente.id_for_label }}" class="form-label">Ingrese nombre del cliente</label>
+                    <input type="text" name="{{form.cliente.name}}" class="form-control" id="" placeholder="nombre apellidos">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.despacho.id_for_label }}" class="form-label">Ingrese dirección de despacho</label>
+                    <input type="text" name="{{form.despacho.name}}" class="form-control" id="" placeholder="direccion detallada del cliente">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.forma_pago.id_for_label }}" class="form-label">Ingrese la forma de pago</label>
+                    <input type="text" name="{{form.forma_pago.name}}" class="form-control" id="" placeholder="forma de pago">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.producto.id_for_label }}" class="form-label">Ingrese los Productos</label>
+                    <input type="text" name="{{form.producto.name}}" class="form-control" id="" placeholder="Productos">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.cantidad.id_for_label }}" class="form-label">Ingrese la cantidad de productos</label>
+                    <input type="number" name="{{form.cantidad.name}}" class="form-control" id="" placeholder="cantidad de productos">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.precio.id_for_label }}" class="form-label">Ingrese el precio de los productos</label>
+                    <input type="text" name="{{form.precio.name}}" class="form-control" id="" placeholder="precios">
+                </div>
+                
+                
+            <button type="submit" class="btn btn-secondary mt-2 w-100">Guardar Pedido</button>
+            </div>
+            
+        </form>
     </div>
 
-</div>
+</div>-->
 
+<form action="" method='POST'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-secondary mt-2 w-100">Guardar Pedido</button>
+</form>
 
 {%endblock%}

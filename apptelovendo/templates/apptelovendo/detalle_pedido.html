@@ -26,6 +26,7 @@
                             <th scope="col">Cliente</th>
                             <th scope="col">Producto</th>
                             <th scope="col">Canitdad</th>
+                            <th scipe="col">Direccion de despacho</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,7 @@
                             {% for detalle in detalles %}
                                 <td>{{detalle.producto.nombre}}</td>
                                 <td>{{detalle.cantidad}}</td>
+                                <td>{{detalle.pedido.despacho}}</td>
                             {% endfor %}
                         </tr>
 

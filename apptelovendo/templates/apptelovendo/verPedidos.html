@@ -27,6 +27,7 @@
                             <th scope="col">Estado</th>
                             <th scope="col">Número de Cliente</th>
                             <th scope="col">Detalle</th>
+                            <th scope="col">Direccion de despaho</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,7 @@
                             <td>
                                 <a href="{% url 'detalle_pedido' pedido.id%}" class="btn btn-info" role="buttom">Ver detalles</a>
                             </td>
+                            <td>{{pedido.despacho}}</td>
                         </tr>
                         {% endfor %}
 

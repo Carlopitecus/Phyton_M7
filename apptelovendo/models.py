@@ -39,8 +39,21 @@ class Pedido(models.Model):
     estado = models.CharField(max_length=20, choices=ESTADOS)
     usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=None, related_name='pedidos')
     asignado_a = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, blank=True, null=True, related_name='pedidos_asinados')
+    despacho = models.CharField(max_length=250, blank=True, null=True)
+    forma_pago = models.CharField(max_length=50, blank=True, null=True)
 
 class DetallePedido(models.Model):
-    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    #pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
+    #producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField(default=1)
+    precio = models.IntegerField(blank=True, null=True)
+    cliente = models.CharField(max_length=100, blank=True, null=True)
+    forma_pago = models.CharField(max_length=50, blank=True, null=True)
+    despacho = models.CharField(max_length=250, blank=True, null=True)
+    productos = models.CharField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        datos = "Producto: " + self.producto.nombre
+        return datos
+    
+    
