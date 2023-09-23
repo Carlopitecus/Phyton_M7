@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'Telovendo_M7.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'te lo vendo M7',
+        'NAME': 'telovendo',
         'USER': 'postgres',
-        'PASSWORD': 'dulce@1844',
+        'PASSWORD': 'Amidamaru_1',
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -132,3 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTH_USER_MODEL = 'apptelovendo.CustomUser'
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y', '%Y-%m-%d', '%d/%m/%Y', '%Y/%m/%d', '%d.%m.%Y', '%Y.%m.%d']

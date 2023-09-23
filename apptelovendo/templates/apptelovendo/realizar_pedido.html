@@ -1,0 +1,59 @@
+{%extends "appTelovendo/base.html"%}
+
+{%block title%} Realizar pedido {%endblock%}
+
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/estilos.css' %}">
+
+<div class="container mt-4 mb-4">
+    <div class="col-md-12">
+        <form method="POST" action="{%url 'realizar_pedido' %}">
+            {% csrf_token %}
+            <h1 class="text-center">Realizar Pedidos</h1>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.cliente.id_for_label }}" class="form-label">Ingrese nombre del cliente</label>
+                    <input type="text" name="{{form.cliente.name}}" class="form-control" id="" placeholder="nombre apellidos">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.direccion_entrega.id_for_label }}" class="form-label">Ingrese su dirección</label>
+                    <input type="text" name="{{form.direccion_entrega.name}}" class="form-control" id="" placeholder="direccion detallada ">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.fecha_pedido.id_for_label }}" class="form-label">Ingrese la Fecha</label>
+                    <input type="date" name="{{form.fecha_pedido.name}}" class="form-control" id="" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.forma_pago.id_for_label }}" class="form-label">Indque la forma de pago </label>
+                    <input type="text" name="{{form.forma_pago.name}}" class="form-control" id="" placeholder="Forma de pago">
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.productos.id_for_label }}" class="form-label">Productos:</label>
+                    <br>
+                    {% for producto in form.productos.field.queryset %}
+                        <label>
+                            <input type="checkbox" name="{{ form.productos.name }}" value="{{ producto.id }}" {% if producto in form.productos.value %} checked {% endif %}>
+                            {{ producto.nombre }}, Precio: {{ producto.precio }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.cantidad.id_for_label }}" class="form-label">Indque la cantiad de productos </label>
+                    <input type="text" name="{{form.cantidad.name}}" class="form-control" id="" placeholder="Cantiad de productos">
+                </div>   
+            <button type="submit" class="btn btn-secondary mt-2 w-100">Realizar Pedido</button>
+            </div>
+            
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+
+{%endblock%}
